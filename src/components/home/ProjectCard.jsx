@@ -3,6 +3,7 @@ import Col from "react-bootstrap/Col";
 import Card from "react-bootstrap/Card";
 import Skeleton from "react-loading-skeleton";
 import axios from "axios";
+import "./ProjectCard.css";
 
 const ProjectCard = ({ value }) => {
   const {
@@ -14,25 +15,35 @@ const ProjectCard = ({ value }) => {
     pushed_at,
   } = value;
   return (
-    <Col md={6}>
-      <Card className="card shadow-lg p-3 mb-5 bg-white rounded">
-        <Card.Body>
-          <Card.Title as="h5">{name || <Skeleton />} </Card.Title>
-          <Card.Text>{(!description) ? "" : description || <Skeleton count={3} />} </Card.Text>
-          {svn_url ? <CardButtons svn_url={svn_url} /> : <Skeleton count={2} />}
-          <hr />
-          {languages_url ? (
-            <Language languages_url={languages_url} repo_url={svn_url} />
-          ) : (
-            <Skeleton count={3} />
-          )}
-          {value ? (
-            <CardFooter star_count={stargazers_count} repo_url={svn_url} pushed_at={pushed_at} />
-          ) : (
-            <Skeleton />
-          )}
-        </Card.Body>
-      </Card>
+    <Col md={6} className="project-col">
+      <div className="project-card">
+        <div className="card">
+          {/* Front of card - only title */}
+          <div className="card-front">
+            <h5 className="card-title">{name || <Skeleton />}</h5>
+          </div>
+          
+          {/* Back of card - full content */}
+          <div className="card-back">
+            <h5 className="card-title">{name || <Skeleton />}</h5>
+            <p className="card-text">
+              {(!description) ? "" : description || <Skeleton count={3} />}
+            </p>
+            {svn_url ? <CardButtons svn_url={svn_url} /> : <Skeleton count={2} />}
+            <hr />
+            {languages_url ? (
+              <Language languages_url={languages_url} repo_url={svn_url} />
+            ) : (
+              <Skeleton count={3} />
+            )}
+            {value ? (
+              <CardFooter star_count={stargazers_count} repo_url={svn_url} pushed_at={pushed_at} />
+            ) : (
+              <Skeleton />
+            )}
+          </div>
+        </div>
+      </div>
     </Col>
   );
 };
@@ -93,7 +104,6 @@ const Language = ({ languages_url, repo_url }) => {
               {Math.trunc((data[language] / total_count) * 1000) / 10} %
             </span>
           </a>
-
         ))
         : "code yet to be deployed."}
     </div>

@@ -1,0 +1,102 @@
+.project-card {
+  width: 100%;
+  height: 330px; /* Fixed height */
+  perspective: 1000px;
+  margin-bottom: 30px;
+}
+
+.card {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transition: transform 1.2s;
+  transform-style: preserve-3d;
+  cursor: pointer;
+}
+
+.project-card:hover .card {
+  transform: rotateY(180deg);
+}
+
+.card-front, .card-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  padding: 20px;
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+.card-back {
+  transform: rotateY(180deg);
+  overflow-y: auto;
+}
+
+/* Make all cards in the same row equal height */
+.project-row {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.project-col {
+  display: flex;
+  margin-bottom: 30px;
+  height: 330px; /* Match card height */
+}
+
+/* Card title styling */
+.card-title {
+  font-size: 1.25rem;
+  margin-bottom: 1rem;
+  text-align: center;
+}
+
+/* Center content vertically and horizontally on front */
+.card-front {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
+/* Special styling for front card title */
+.card-front .card-title {
+  font-size: 2rem;
+  font-weight: bold;
+  color: #2c3e50;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  position: relative;
+  padding-bottom: 1rem;
+  margin: 0;  /* Remove default margins to ensure perfect centering */
+  text-align: center;
+  width: 100%;
+}
+
+.card-front .card-title::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 50px;  /* Make underline longer */
+  height: 3px;
+  background: #3498db;
+  border-radius: 2px;
+}
+
+/* Hide description on front */
+.card-front .card-text {
+  display: none;
+}
+
+/* Show full description on back */
+.card-back .card-text {
+  display: block;
+  margin-bottom: 1rem;
+  overflow: visible;
+  text-overflow: initial;
+  -webkit-line-clamp: initial;
+} 

@@ -1,0 +1,134 @@
+.tech-slider-container {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  padding: 20px 0;
+}
+
+.tech-slider {
+  position: relative;
+  width: 100%;
+  height: 160px;
+  overflow: hidden;
+}
+
+/* Default state - slides start from right */
+.tech-slide {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 40px;
+  transition: transform 0.5s ease-in-out;
+  transform: translateX(100%);
+  visibility: hidden;
+}
+
+/* Active state - slide is visible and centered */
+.tech-slide.active {
+  transform: translateX(0);
+  visibility: visible;
+}
+
+/* Previous slide - always exits to the left */
+.tech-slide.inactive {
+  transform: translateX(-100%);
+  visibility: visible;
+}
+
+/* Ensure next slide always comes from right */
+.tech-slide.active ~ .tech-slide {
+  transform: translateX(100%);
+}
+
+/* Special handling for last slide to first slide transition */
+.tech-slide:last-child.active ~ .tech-slide:first-child {
+  transform: translateX(100%);
+}
+
+.tech-icon-wrapper {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 15px;
+  transition: transform 0.3s ease;
+  max-width: 150px;
+}
+
+.tech-icon-wrapper:hover {
+  transform: translateY(-5px);
+}
+
+.tech-icon {
+  height: 60px;
+  width: 60px;
+  object-fit: contain;
+  filter: grayscale(100%);
+  transition: filter 0.3s ease;
+  margin-bottom: 10px;
+}
+
+.tech-icon:hover {
+  filter: grayscale(0%);
+}
+
+.tech-name {
+  font-size: 0.9rem;
+  color: #666;
+  font-weight: 500;
+  text-align: center;
+  margin-top: 8px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 100px;
+}
+
+/* Slider dots navigation */
+.slider-dots {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+  gap: 8px;
+}
+
+.dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: #ddd;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.dot.active {
+  background-color: #3498db;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .tech-slide {
+    gap: 20px;
+  }
+  
+  .tech-icon {
+    height: 50px;
+    width: 50px;
+  }
+  
+  .tech-name {
+    font-size: 0.8rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .tech-icon-wrapper {
+    max-width: 120px;
+  }
+} 
