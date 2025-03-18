@@ -7,6 +7,7 @@ const TechStack = ({ heading }) => {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [previousSlide, setPreviousSlide] = useState(null);
   const [isPaused, setIsPaused] = useState(false);
+  const [itemsPerSlide, setItemsPerSlide] = useState(5); // Default for desktop
   
   const technologies = [
     {
@@ -14,7 +15,7 @@ const TechStack = ({ heading }) => {
       icon: "https://raw.githubusercontent.com/devicons/devicon/master/icons/python/python-original.svg"
     },
     {
-      name: "SQL",
+      name: "PostgreSQL",
       icon: "https://raw.githubusercontent.com/devicons/devicon/master/icons/postgresql/postgresql-original.svg"
     },
     {
@@ -52,11 +53,37 @@ const TechStack = ({ heading }) => {
     {
       name: "dbt",
       icon: "https://seeklogo.com/images/D/dbt-logo-500AB0BAA7-seeklogo.com.png"
+    },
+    {
+      name: "Kafka",
+      icon: "https://www.vectorlogo.zone/logos/apache_kafka/apache_kafka-icon.svg"
+    },
+    {
+      name: "Power BI",
+      icon: "https://raw.githubusercontent.com/microsoft/PowerBI-Icons/main/SVG/Power-BI.svg"
+    },
+    {
+      name: "Postman",
+      icon: "https://www.vectorlogo.zone/logos/getpostman/getpostman-icon.svg"
+    },
+    {
+      name: "MongoDB",
+      icon: "https://raw.githubusercontent.com/devicons/devicon/master/icons/mongodb/mongodb-original.svg"
     }
   ];
 
-  const totalSlides = Math.ceil(technologies.length / 4);
-  const itemsPerSlide = 4;
+  useEffect(() => {
+    const handleResize = () => {
+      setItemsPerSlide(window.innerWidth <= 768 ? 3 : 5);
+    };
+
+    handleResize(); // Set initial value
+    window.addEventListener('resize', handleResize);
+
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
+  const totalSlides = Math.ceil(technologies.length / itemsPerSlide);
 
   const getSlideItems = (slideIndex) => {
     const start = slideIndex * itemsPerSlide;
