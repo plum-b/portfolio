@@ -52,6 +52,14 @@ code {
   background-color: rgba(234, 236, 239, 0.81);
   transition: background-color 0.2s;
 }
+.navbar-transparent,
+.navbar-white {
+  .navbar-brand,
+  .nav-item,
+  .navbar-nav .nav-link {
+    color: #fff !important;
+  }
+}
 .brand {
   color: #363636 !important;
 }
