@@ -52,8 +52,7 @@ code {
   background-color: rgba(234, 236, 239, 0.81);
   transition: background-color 0.2s;
 }
-.navbar-transparent,
-.navbar-white {
+.navbar-transparent {
   .navbar-brand,
   .nav-item,
   .navbar-nav .nav-link {
@@ -61,7 +60,15 @@ code {
   }
 }
 
-// Grey hover color for navigation links (Projects, Resume, About, Skills)
+.navbar-white {
+  .navbar-brand,
+  .nav-item,
+  .navbar-nav .nav-link {
+    color: #111 !important;
+  }
+}
+
+// Grey hover color for navigation links
 .navbar-transparent .navbar-nav .nav-link:hover,
 .navbar-transparent .nav-item:hover,
 .navbar-white .navbar-nav .nav-link:hover,
@@ -145,3 +152,4 @@ code {
     animation: progress 1.5s ease-in-out forwards;
   }
 }
+
