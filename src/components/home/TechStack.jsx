@@ -24,7 +24,7 @@ const TechStack = ({ heading }) => {
     },
     {
       name: "Apache Airflow",
-      icon: "https://static-00.iconduck.com/assets.00/airflow-icon-512x512-tpr318yf.png"
+      icon: "https://cdn.jsdelivr.net/gh/homarr-labs/dashboard-icons/png/apache-airflow.png"
     },
     {
       name: "Docker",
